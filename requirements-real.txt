@@ -1,0 +1,5 @@
+# Optional only. The local mock/demo requires no external packages.
+alipay-sdk-python==3.7.1411
+pycryptodome==4.3.0
+rsa==4.9.1
+pyasn1==0.6.5

@@ -1,0 +1,11 @@
+{
+  "title": "A focused launch brief for a neighborhood refill shop",
+  "audience": "The shop owner and a freelance designer",
+  "objective": "Help nearby residents understand what they can refill and how to bring their own containers",
+  "deliverables": ["One A4 counter poster", "Three social post drafts", "A one-page FAQ"],
+  "constraints": ["Use a calm, practical tone", "Do not claim quantified environmental savings without evidence", "Owner review before publication"],
+  "facts": [
+    {"text": "The shop offers refillable hand soap and dish soap.", "source": "Owner-supplied product list; example data"},
+    {"text": "Customers may bring clean containers.", "source": "Owner-supplied shop policy; example data"}
+  ]
+}
