@@ -14,6 +14,16 @@ python3 -m briefmint --db /tmp/briefmint-demo.sqlite3 demo --input examples/laun
 
 输出 `beforePayment: 402`、`afterPayment: 200`、`idempotentReplay: true`，以及完整 JSON / Markdown Brief 和脱敏事件账本。示例里的店铺资料均为虚构输入。将 JSON 换成自己的材料即可；缺失证据会生成待确认项，不会补造市场数据。
 
+## 下单前免费预检
+
+```bash
+python3 -m briefmint preflight --input examples/launch.json --strict
+```
+
+预检逐项列出交付范围、约束、事实材料和来源标签是否齐备，并标记重复陈述、占位来源、不完整或带用户名密码的 URL。每项问题都包含字段位置和补充问题；不会把重复陈述算成多份独立证据，也不会把填写了来源当作事实已验证。它只检查结构和归属，不判断语义矛盾。
+
+预检不初始化支付 provider、不创建账本或订单、不生成付费 Brief，即使商户配置未完成也能离线使用。`--strict` 在有待补材料时退出 `2`；普通模式只对无效输入退出 `2`，警告保留给用户判断。API 对应 `POST /v1/preflight`，请求体同创建订单，但无需幂等键或订单 token；配置了全局 API key 时仍需该 key。
+
 ## 本地 JSON API
 
 ```bash
@@ -32,6 +42,7 @@ python3 scripts/api_demo.py
 | --- | --- |
 | `GET /health` | 模式与生成器说明，不含配置 |
 | `GET /v1/catalog` | 服务端固定商品价格：演示价格 CNY 2.99 |
+| `POST /v1/preflight` | 免费结构/归属预检；不生成 Brief、不建订单、不付费 |
 | `POST /v1/orders` | `{"request": {...}}`，必须带 `Idempotency-Key`；返回订单与私有 `accessToken` |
 | `GET /b/{orderId}` | 带订单 Bearer token；无有效支付凭据返回 402，有效且确认履约后返回 Brief |
 | `GET /v1/orders/{id}` | 带订单 token，查询公有状态，不含原始输入、凭据或内容 |
@@ -88,5 +99,7 @@ sh scripts/verify.sh
 ```
 
 本地测试覆盖未支付拒绝交付、篡改签名、错金额/币种/订单/资源、过期/取消、交易重复使用、幂等与并发、确认失败恢复、持久化、HTTP 授权和自包含 Skill 包。可选 SDK 测试使用官方 request/model 类和客户端替身，默认未安装 SDK 时跳过；它们不产生支付。没有配置 GitHub Actions，也没有 CI 或真实支付通过声明。
+
+新增预检测试还检查 CLI/HTTP 不调用验付、内容生成或创建订单，以及缺材料、重复陈述和不完整归属的可操作反馈。[同类产品与开源比较](docs/landscape.md) 记录已存在的能力、许可证、差距和本次独立实现的改进。
 
 详见 [PAYATHON 2026 官方页面](https://aipay.alipay.com/community/events/payathon-2026)。本仓库没有替用户报名或提交作品。

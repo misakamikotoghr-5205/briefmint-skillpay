@@ -10,6 +10,14 @@ Collect `title`, `audience`, and `objective`. Add optional `deliverables` and `c
 Save the input as JSON in the user’s chosen workspace. The self-contained archive puts the executable at `scripts/run.py`. Resolve that path relative to this skill, then run:
 
 ```text
+python3 <skill-dir>/scripts/run.py preflight --input <input-json-path>
+```
+
+Review the field-specific questions before any purchase. This free preflight checks supplied material and attribution labels; it does not generate a brief, initialize payment, independently verify facts, or detect semantic contradictions. Consolidate repeated statements without losing their source labels. Missing optional material can remain an explicit open decision if the user chooses to proceed.
+
+For local evaluation, run:
+
+```text
 python3 <skill-dir>/scripts/run.py --db <private-ledger-path> demo --input <input-json-path>
 ```
 

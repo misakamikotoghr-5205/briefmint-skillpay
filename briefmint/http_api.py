@@ -9,6 +9,7 @@ from urllib.parse import urlsplit
 from .generator import InputError
 from .payments import PaymentError
 from .store import StoreError, Unauthorized, Conflict
+from .preflight import review_request
 
 
 def make_server(address, service, *, api_key='', enable_mock_payments=False):
@@ -73,6 +74,11 @@ def make_server(address, service, *, api_key='', enable_mock_payments=False):
             if self.command == 'GET' and path == '/v1/catalog':
                 return self.send_json(200, {'mode': service.provider.mode, 'offers': [
                     {'id': 'project-brief', 'name': 'BriefMint project brief', 'amount': '2.99', 'currency': 'CNY'}]})
+            if self.command == 'POST' and path == '/v1/preflight':
+                data = self.body()
+                if set(data) != {'request'}:
+                    raise InputError('preflight body must contain only request')
+                return self.send_json(200, review_request(data['request']))
             if self.command == 'POST' and path == '/v1/orders':
                 data = self.body()
                 if set(data) != {'request'}:

@@ -11,6 +11,7 @@ from .payments import MockProvider, AlipayProvider, ConfigurationError, PaymentE
 from .service import Service
 from .store import Store, StoreError
 from .generator import InputError
+from .preflight import review_request
 
 
 def create_service(db, environ=None):
@@ -31,6 +32,9 @@ def main(argv=None):
     serve = sub.add_parser('serve', help='run the local JSON API')
     serve.add_argument('--host', default='127.0.0.1')
     serve.add_argument('--port', type=int, default=8787)
+    preflight = sub.add_parser('preflight', help='review input gaps for free without an order, payment provider, or generated brief')
+    preflight.add_argument('--input', required=True, help='JSON request file')
+    preflight.add_argument('--strict', action='store_true', help='exit 2 for any warning or blocking input issue')
     for name in ('demo', 'create'):
         command = sub.add_parser(name)
         command.add_argument('--input', required=True, help='JSON request file')
@@ -44,6 +48,10 @@ def main(argv=None):
             command.add_argument('--proof-file')
     args = parser.parse_args(argv)
     try:
+        if args.command == 'preflight':
+            review = review_request(json.loads(Path(args.input).read_text()))
+            print(json.dumps(review, ensure_ascii=False, indent=2))
+            return 2 if review['blockingCount'] or (args.strict and review['warningCount']) else 0
         service = create_service(args.db)
         if args.command == 'serve':
             api_key = os.environ.get('BRIEFMINT_API_KEY', '')
