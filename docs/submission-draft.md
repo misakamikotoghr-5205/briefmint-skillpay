@@ -37,3 +37,15 @@ No verified merchant/service onboarding, real sandbox transaction, production pa
 Repository: https://github.com/misakamikotoghr-5205/briefmint-skillpay
 
 License: MIT. AI assistance: built and reviewed with coordinated Codex agents; no fabricated provider or platform usage.
+
+## 中文商品字段候选
+
+名称：**BriefMint｜带证据清单的项目交接 Brief**
+
+描述候选（适用于待审稿，需与实际售卖范围一致）：
+
+> 把目标、受众、交付物、约束及自有事实整理成可交接的项目 Brief。先免费预检材料缺口与来源标签，再输出范围、验收标准、风险和待确认问题。内置生成器为本地确定性规则，不调用大模型或替你验证事实；可选托管 API 有验付与履约确认门禁。源码 MIT 公开，Skill 包可离线运行；托管支付能力仍需商户实际接入与验证。
+
+买断/订阅、价格、免费试用、售后承诺与实际交付范围由账号持有人确定；示例 API 的 2.99 元不是已确定的 SkillPay 商品定价。没有虚构用户量、交易额、上架链接或平台通过记录。
+
+本轮新增的[中文操作与演示清单](submission/guide-zh.md)、[实际离线运行记录](submission/offline-demo-20261106.json)和[生成 Brief 样例](submission/brief-sample.md)可用于准备投稿；已有英文说明不重复另写。

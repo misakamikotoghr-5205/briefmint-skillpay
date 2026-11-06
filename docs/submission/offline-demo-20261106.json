@@ -1,0 +1,268 @@
+{
+  "schema_version": 1,
+  "executed_on": "2026-11-06",
+  "scope": "Local CLI only, fictional repository input, explicit mock payment mode, isolated temporary ledger. No browser, provider request, account authorization or upload.",
+  "input": {
+    "file": "examples/launch.json",
+    "sha256": "16ad233e89a70bafdcef87ae3de4032fe959e462895df0561cf686eb712b1976"
+  },
+  "preflight_ready": {
+    "exit_code": 0,
+    "result": {
+      "version": 1,
+      "mode": "preflight",
+      "inputValid": true,
+      "canCreateOrder": true,
+      "assessment": "ready-for-owner-review",
+      "requestSha256": "b4e37419e00e3ff1dfe576f8a5ced1c058e58a82bfe47abd4e795a17d0caeda3",
+      "checks": [
+        {
+          "code": "INPUT_SCHEMA",
+          "status": "pass",
+          "message": "Required fields and input bounds match the order contract.",
+          "fields": [
+            "title",
+            "audience",
+            "objective"
+          ],
+          "question": null
+        },
+        {
+          "code": "DELIVERABLES",
+          "status": "pass",
+          "message": "A scoped deliverable list supplied.",
+          "fields": [
+            "deliverables"
+          ],
+          "question": null
+        },
+        {
+          "code": "CONSTRAINTS",
+          "status": "pass",
+          "message": "Delivery constraints supplied.",
+          "fields": [
+            "constraints"
+          ],
+          "question": null
+        },
+        {
+          "code": "FACTS",
+          "status": "pass",
+          "message": "Supporting facts supplied.",
+          "fields": [
+            "facts"
+          ],
+          "question": null
+        },
+        {
+          "code": "ATTRIBUTION",
+          "status": "pass",
+          "message": "Each fact has an attribution label; the label is not proof of accuracy.",
+          "fields": [
+            "facts"
+          ],
+          "question": null
+        },
+        {
+          "code": "DUPLICATE_FACTS",
+          "status": "pass",
+          "message": "No repeated fact statements after case, Unicode, and whitespace normalization.",
+          "fields": [
+            "facts"
+          ],
+          "question": null
+        }
+      ],
+      "warningCount": 0,
+      "blockingCount": 0,
+      "questions": [],
+      "counts": {
+        "deliverables": 3,
+        "constraints": 3,
+        "facts": 2,
+        "uniqueStatements": 2,
+        "attributionGaps": 0,
+        "duplicateGroups": 0
+      },
+      "briefGenerated": false,
+      "orderCreated": false,
+      "paymentInitiated": false,
+      "disclosure": "This free review checks only supplied input structure and attribution. It does not verify facts, detect semantic contradictions, generate a brief, create an order, or initiate payment."
+    }
+  },
+  "preflight_missing": {
+    "input": "docs/submission/preflight-missing-input.json",
+    "exit_code": 2,
+    "result": {
+      "version": 1,
+      "mode": "preflight",
+      "inputValid": true,
+      "canCreateOrder": true,
+      "assessment": "review-needed",
+      "requestSha256": "fe102b83fd5a364a78f52e62dd14a051544f367b97ab05265f0fbad3e4fd2934",
+      "checks": [
+        {
+          "code": "INPUT_SCHEMA",
+          "status": "pass",
+          "message": "Required fields and input bounds match the order contract.",
+          "fields": [
+            "title",
+            "audience",
+            "objective"
+          ],
+          "question": null
+        },
+        {
+          "code": "DELIVERABLES",
+          "status": "warning",
+          "message": "A scoped deliverable list missing; the paid brief will leave an open decision.",
+          "fields": [
+            "deliverables"
+          ],
+          "question": "Which files or assets should the owner approve?"
+        },
+        {
+          "code": "CONSTRAINTS",
+          "status": "warning",
+          "message": "Delivery constraints missing; the paid brief will leave an open decision.",
+          "fields": [
+            "constraints"
+          ],
+          "question": "What budget, timing, tone, or review constraints apply?"
+        },
+        {
+          "code": "FACTS",
+          "status": "warning",
+          "message": "Supporting facts missing; the paid brief will leave an open decision.",
+          "fields": [
+            "facts"
+          ],
+          "question": "Which supplied facts support the project objective?"
+        },
+        {
+          "code": "ATTRIBUTION",
+          "status": "warning",
+          "message": "There are no facts to attribute.",
+          "fields": [
+            "facts"
+          ],
+          "question": "Supply facts and identify their source before making factual claims."
+        },
+        {
+          "code": "DUPLICATE_FACTS",
+          "status": "pass",
+          "message": "No repeated fact statements after case, Unicode, and whitespace normalization.",
+          "fields": [
+            "facts"
+          ],
+          "question": null
+        }
+      ],
+      "warningCount": 4,
+      "blockingCount": 0,
+      "questions": [
+        "Which files or assets should the owner approve?",
+        "What budget, timing, tone, or review constraints apply?",
+        "Which supplied facts support the project objective?",
+        "Supply facts and identify their source before making factual claims."
+      ],
+      "counts": {
+        "deliverables": 0,
+        "constraints": 0,
+        "facts": 0,
+        "uniqueStatements": 0,
+        "attributionGaps": 0,
+        "duplicateGroups": 0
+      },
+      "briefGenerated": false,
+      "orderCreated": false,
+      "paymentInitiated": false,
+      "disclosure": "This free review checks only supplied input structure and attribution. It does not verify facts, detect semantic contradictions, generate a brief, create an order, or initiate payment."
+    }
+  },
+  "mock_lifecycle": {
+    "mode": "mock",
+    "realMoney": false,
+    "beforePayment": 402,
+    "afterPayment": 200,
+    "idempotentReplay": true
+  },
+  "generator": {
+    "inputSha256": "b4e37419e00e3ff1dfe576f8a5ced1c058e58a82bfe47abd4e795a17d0caeda3",
+    "llmUsed": false,
+    "mode": "deterministic-template"
+  },
+  "audit_event_types": [
+    "ORDER_CREATED",
+    "PAYMENT_VERIFIED",
+    "BRIEF_PREPARED",
+    "FULFILLMENT_CONFIRMED"
+  ],
+  "brief_artifact": "docs/submission/brief-sample.md",
+  "package": {
+    "file": "dist/briefmint-skill.zip",
+    "bytes": 22852,
+    "sha256": "82247a8fd0729450e8214dc66249a0c0507519e8db47cfd4234795f0d9f3e5c1",
+    "all_embedded_files_match_current_source": true,
+    "entries": [
+      {
+        "entry": "briefmint/SKILL.md",
+        "matches_source": true
+      },
+      {
+        "entry": "briefmint/LICENSE",
+        "matches_source": true
+      },
+      {
+        "entry": "briefmint/examples/launch.json",
+        "matches_source": true
+      },
+      {
+        "entry": "briefmint/requirements-real.txt",
+        "matches_source": true
+      },
+      {
+        "entry": "briefmint/references/integration.md",
+        "matches_source": true
+      },
+      {
+        "entry": "briefmint/scripts/briefmint/__init__.py",
+        "matches_source": true
+      },
+      {
+        "entry": "briefmint/scripts/briefmint/__main__.py",
+        "matches_source": true
+      },
+      {
+        "entry": "briefmint/scripts/briefmint/generator.py",
+        "matches_source": true
+      },
+      {
+        "entry": "briefmint/scripts/briefmint/http_api.py",
+        "matches_source": true
+      },
+      {
+        "entry": "briefmint/scripts/briefmint/payments.py",
+        "matches_source": true
+      },
+      {
+        "entry": "briefmint/scripts/briefmint/preflight.py",
+        "matches_source": true
+      },
+      {
+        "entry": "briefmint/scripts/briefmint/service.py",
+        "matches_source": true
+      },
+      {
+        "entry": "briefmint/scripts/briefmint/store.py",
+        "matches_source": true
+      },
+      {
+        "entry": "briefmint/scripts/run.py",
+        "matches_source": true
+      }
+    ]
+  },
+  "omitted": "Order identifiers, access tokens, mock proofs, ledger paths and credentials.",
+  "external_status": "No real payment, sandbox transaction, listing approval, registration, video recording or submission performed."
+}
